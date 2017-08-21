@@ -9,10 +9,10 @@ CitizenDescription citizen
 	float _marriageAge = 2.0;
 	float _marrigeRange = 4.0;
 	float _childMinAge = 2.2;
-	float _childMaxAge = 8.0;
+	float _childMaxAge = 10.0;
 
-	float _maxAge = 15.0;
-	float _maxAgeTolerance = 3.0;
+	float _maxAge = 13.8;
+	float _maxAgeTolerance = 0.0;
 	float _agePerSecond = 0.000277777;
 
 	float _childTerm = 900.0;

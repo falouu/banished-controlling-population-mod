@@ -2,7 +2,7 @@ StringTable mainMenu
 {
 	Entry _strings
 	[ 
-		{ String _name = "Title";				String _text = "Banished"; 	}
+		{ String _name = "Title";				String _text = "Banished - Controlling population"; 	}
 		{ String _name = "Loading";				String _text = "Loading..."; 	}
 		{ String _name = "Saving";				String _text = "Saving..."; 	}
 		{ String _name = "Wait";				String _text = "Please Wait..."; 	}
