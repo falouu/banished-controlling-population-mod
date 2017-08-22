@@ -1,4 +1,4 @@
-# Contolling population mod
+# Controlling population mod
 
 ## Building mod
 
@@ -13,7 +13,7 @@
 
 * Run command: `python build.py`. This will do:
     * download modkit if not already present
-    * copy pkg file from your game WinData directory - if not already
+    * copy *.pkg files from your game WinData directory - if not already
     copied
     * build mod
     * package mod
