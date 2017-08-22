@@ -11,7 +11,7 @@ CitizenDescription citizen
 	float _childMinAge = 2.2;
 	float _childMaxAge = 10.0;
 
-	float _maxAge = 13.8;
+	float _maxAge = 0.1;
 	float _maxAgeTolerance = 0.0;
 	float _agePerSecond = 0.000277777;
 
