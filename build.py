@@ -1,14 +1,20 @@
 import glob
 import json
 import sys
-from urllib.request import urlopen, urlretrieve
+from subprocess import run
+from urllib.request import urlretrieve
 from zipfile import ZipFile
 from pathlib import Path
 import shutil
 
 import os
 
+from os.path import relpath
+
 mod_kit_url = 'http://www.shiningrocksoftware.com/download/BanishedKit_1.0.6.160521.zip'
+build_cmd_resource = 'ControllingPopulationMod.rsc:list'
+package_cmd_resource = 'ControllingPopulationMod.rsc:ControllingPopulationMod'
+mod_name = 'ControllingPopulationMod'
 
 
 def print_now(message="", file=sys.stdout):
@@ -74,6 +80,31 @@ def ensure_windata_copied(mod_kit_installation_dir, windata_dir):
             ensure_dir(dest_dir)
             shutil.copy(file, dest_dir)
 
+def modkit_run(command, mod_kit_installation_dir):
+    src_rel_path = relpath('src/', "{mod_kit_dir}/bin".format(mod_kit_dir=mod_kit_installation_dir))
+    build_rel_path = relpath('build/bin/', "{mod_kit_dir}/bin".format(mod_kit_dir=mod_kit_installation_dir))
+    full_command = [r'bin\x64\Tools-x64.exe'] + command + [r'/pathres', src_rel_path, '/pathdat', build_rel_path]
+    run(
+        full_command,
+        cwd=mod_kit_installation_dir, shell=True
+    )
+
+
+def build(mod_kit_installation_dir):
+    print_now("Building mod...")
+    modkit_run([r'/build', build_cmd_resource], mod_kit_installation_dir)
+
+
+def package(mod_kit_installation_dir):
+    print_now("Packaging mod...")
+    modkit_run([r'/mod', package_cmd_resource], mod_kit_installation_dir)
+
+
+def install(mod_kit_installation_dir, windata_dir):
+    print("Installing mod...")
+    file = "{mod_kit_dir}/bin/WinData/{mod_name}.pkm".format(mod_kit_dir=mod_kit_installation_dir, mod_name=mod_name)
+    dest_dir = windata_dir
+    shutil.copy(file, dest_dir)
 
 with open('settings.dist.json') as settings_dist_file:
     settings_dist = json.load(settings_dist_file)
@@ -96,3 +127,11 @@ win_data_dir = get_required_param('WinDataDir')
 ensure_modkit(mod_kit_url, mod_kit_installation_dir)
 ensure_windata_copied(mod_kit_installation_dir, win_data_dir)
 
+print()
+build(mod_kit_installation_dir)
+print()
+package(mod_kit_installation_dir)
+print()
+install(mod_kit_installation_dir, win_data_dir)
+print()
+print("All done!")

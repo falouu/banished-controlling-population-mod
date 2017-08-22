@@ -2,7 +2,7 @@ StringTable mainMenu
 {
 	Entry _strings
 	[ 
-		{ String _name = "Title";				String _text = "Banished - Controlling population"; 	}
+		{ String _name = "Title";				String _text = "Banished"; 	}
 		{ String _name = "Loading";				String _text = "Loading..."; 	}
 		{ String _name = "Saving";				String _text = "Saving..."; 	}
 		{ String _name = "Wait";				String _text = "Please Wait..."; 	}
@@ -106,7 +106,7 @@ StringTable mainMenu
 		{ String _name = "Unbind";				String _text = "Unbind"; }
 		{ String _name = "AlreadyBound";		String _text = "@0 is already bound to @1. Bind it to @2 instead?"; }
 
-		{ String _name = "NewGameTip";			String _text = "Begin a new game"; }
+		{ String _name = "NewGameTip";			String _text = "Begin a new game with Controlling population mod"; }
 		{ String _name = "LoadGameTip";			String _text = "Load and resume a previously saved game"; }
 		{ String _name = "SaveGameTip";			String _text = "Save the current game"; }
 		{ String _name = "OptionsTip";			String _text = "Configure the game settings"; }
